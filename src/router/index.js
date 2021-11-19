@@ -1,18 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Idx from "../views/Idx.vue";
+import Bike from "../views/Bike.vue";
+import Route from "../views/Route.vue";
+import Attraction from "../views/Attraction.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Idx",
-    component: Idx,
+    name: "Bike",
+    component: Bike,
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/route",
+    name: "Route",
+    component: Route,
+  },
+  {
+    path: "/attraction",
+    name: "Attraction",
+    component: Attraction,
   },
 ];
 
