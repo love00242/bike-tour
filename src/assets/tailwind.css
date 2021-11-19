@@ -3,3 +3,10 @@
 @tailwind components;
 
 @tailwind utilities;
+
+
+@layer components {
+  .btn-position {
+    @apply absolute bg-green text-white rounded-full h-10 w-10 text-xl;
+  }
+}

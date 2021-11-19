@@ -1,16 +1,28 @@
 <template>
-  <div class="flex items-center justify-around h-16 bg-green">
-    <div class="w-56 px-2">
+  <div class="flex items-center justify-around h-16 bg-green px-10">
+    <div class="w-56 min-w-max px-2">
       <img src="/images/Logo.png" alt="" />
     </div>
-    <ul class="flex w-2/5">
+    <ul class="flex w-4/5 justify-end">
       <li
-        v-for="(item, i) in list" 
+        v-for="(item, i) in list"
         :key="i"
-        class="flex items-center text-mi bg-white font-bold text-green rounded-lg px-3 py-1"
+        class="
+          flex
+          items-center
+          text-mi
+          bg-white
+          font-bold
+          text-green
+          rounded-lg
+          px-3
+          py-1
+          mr-3
+          min-w-max
+        "
       >
         <font-awesome-icon :icon="item.icon" />
-        <p class="ml-0.5">{{ item.title }}</p>
+        <p class="ml-1">{{ item.title }}</p>
       </li>
     </ul>
   </div>
