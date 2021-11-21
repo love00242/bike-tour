@@ -3,7 +3,7 @@
     class="
       flex flex-col
       absolute
-      top-5
+      top-6
       left-5
       w-96
       h-xl
@@ -11,9 +11,10 @@
       rounded-lg
       shadow
       p-3
+      z-1
     "
   >
-    <SearchBar />
+    <SearchBar @changeCity="changeCity" />
   </div>
 </template>
 
@@ -28,6 +29,10 @@ export default {
     return {};
   },
   computed: {},
-  methods: {},
+  methods: {
+    changeCity(val) {
+      this.$emit("changeCity", val)
+    }
+  },
 };
 </script>

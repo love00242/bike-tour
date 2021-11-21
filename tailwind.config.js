@@ -32,7 +32,7 @@ module.exports = {
         sm: '8px',
         md: '16px',
         lg: '24px',
-        xl: '80vh',
+        xl: '90vh',
       },
       borderRadius: {
         large: '40px'
@@ -43,6 +43,7 @@ module.exports = {
       },
       zIndex: {
         '-1': '-1',
+        '1': '1',
         '2': '2',
         '99': '99',
       }
