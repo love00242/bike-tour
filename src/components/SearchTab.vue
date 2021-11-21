@@ -6,11 +6,12 @@
       shadow
       rounded-large
       absolute
-      top-5
+      top-6
       left-100
       py-1.5
       px-0.5
       w-max
+      z-1
     "
   >
     <li

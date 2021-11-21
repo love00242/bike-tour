@@ -19,7 +19,7 @@
       />
       <font-awesome-icon icon="search" class="text-gray-dark ml-2" />
     </div>
-    <p
+    <!-- <p
       class="
         text-green
         px-2
@@ -30,16 +30,44 @@
       "
     >
       <font-awesome-icon icon="sort-amount-down" /> 排序
-    </p>
+    </p> -->
+    <select
+      class="
+        text-green
+        px-2
+        py-1.5
+        rounded-lg
+        border-solid border border-green
+        font-bold
+        focus:outline-none
+      "
+      v-model="seletCity"
+      @change="changeCity"
+    >
+      <option :value="item.id" v-for="(item, i) in list" :key="i">
+        {{ item.name }}
+      </option>
+    </select>
   </div>
 </template>
 
 <script>
+import { cityList } from "@/utils/cityConfig";
 export default {
   data() {
-    return {};
+    return {
+      list: cityList,
+      seletCity: 'Taipei',
+    };
   },
   computed: {},
-  methods: {},
+  methods: {
+    changeCity() {
+      this.$emit("changeCity", this.seletCity)
+    },
+  },
+  mounted() {
+    this.changeCity();
+  },
 };
 </script>
