@@ -10,47 +10,52 @@
     <!-- 載入圖資 -->
     <l-tile-layer :url="url" :attribution="attribution" />
     <!-- 自己所在位置 -->
-    <l-marker ref="location" :lat-lng="center">
-      <l-icon
-        :icon-url="icon.type.gold"
-        :icon-size="icon.iconGoldSize"
-        :icon-anchor="icon.iconAnchor"
-        :popup-anchor="icon.popupAnchor"
-      >
-      </l-icon>
-      <l-popup>你的位置</l-popup>
-    </l-marker>
+    <v-marker-cluster>
+      <l-marker ref="location" :lat-lng="center">
+        <l-icon
+          :icon-url="icon.type.green"
+          :icon-size="icon.iconSize"
+          :icon-anchor="icon.iconAnchor"
+          :popup-anchor="icon.popupAnchor"
+        >
+        </l-icon>
+        <l-popup style="min-width: 200px">{{
+          changeCenter && changeCenter.StationName.Zh_tw
+        }}</l-popup>
+      </l-marker>
+    </v-marker-cluster>
     <!-- 創建標記點 -->
-    <l-marker :lat-lng="item.local" v-for="item in bikeData" :key="item.id">
-      <!-- 標記點樣式判斷 -->
-      <l-icon
-        :icon-url="icon.type.green"
-        :icon-size="icon.iconSize"
-        :icon-anchor="icon.iconAnchor"
-        :popup-anchor="icon.popupAnchor"
-      />
-      <!-- 彈出視窗 -->
-      <l-popup>
-        {{ item.name }}
-      </l-popup>
-    </l-marker>
+    <v-marker-cluster>
+      <l-marker
+        :lat-lng="[
+          item.StationPosition.PositionLat,
+          item.StationPosition.PositionLon,
+        ]"
+        v-for="(item, i) in bikeData"
+        :key="i"
+      >
+        <!-- 標記點樣式判斷 -->
+        <l-icon
+          :icon-url="icon.type.green"
+          :icon-size="icon.iconSize"
+          :icon-anchor="icon.iconAnchor"
+          :popup-anchor="icon.popupAnchor"
+        />
+        <!-- 彈出視窗 -->
+        <l-popup>
+          {{ item.StationName.Zh_tw }}
+        </l-popup>
+      </l-marker>
+    </v-marker-cluster>
   </l-map>
 </template>
 
 <script>
 export default {
-  props: ['bikeData'],
+  props: ["bikeData", "changeCenter"],
   data() {
     return {
-      //模擬資料
-      data: [
-        { id: 1, name: "夢時代購物中心", local: [22.595153, 120.306923] },
-        { id: 2, name: "漢神百貨", local: [22.61942, 120.296386] },
-        { id: 3, name: "漢神巨蛋", local: [22.669603, 120.302288] },
-        { id: 4, name: "大統百貨", local: [22.630748, 120.318033] },
-      ],
-      zoom: 13, //放大級別(數值為0-20)
-      center: [22.612961, 120.304167], //中心點
+      zoom: 18, //放大級別(數值為0-20)
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", //圖資url
       attribution: `© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors`, //版權資訊
       options: {
@@ -71,14 +76,29 @@ export default {
       },
     };
   },
-  computed: {},
+  watch: {
+    center(val) {
+      if (val) {
+        console.log("opennnnn");
+        this.$refs.location.mapObject.openPopup();
+      }
+    },
+  },
+  computed: {
+    center() {
+      if (this.changeCenter) {
+        const { PositionLat, PositionLon } = this.changeCenter.StationPosition;
+        return [PositionLat, PositionLon];
+      }
+      return [25.0408578889, 121.567904444];
+    },
+  },
   methods: {},
   mounted() {
     // 等地圖創建後執行
     this.$nextTick(() => {
       // 獲得目前位置
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log("1111position", position);
         const p = position.coords;
         // 將中心點設為目前的位置
         this.center = [p.latitude, p.longitude];

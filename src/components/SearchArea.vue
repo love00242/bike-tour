@@ -15,23 +15,43 @@
     "
   >
     <SearchBar @changeCity="changeCity" />
+    <component
+      :is="nowComponent"
+      :bikeData="bikeData"
+      @changeCenterBike="changeCenterBike"
+    ></component>
   </div>
 </template>
 
 <script>
 import SearchBar from "@/components/SearchBar.vue";
-
+import BikeList from "@/components/BikeList.vue";
+import RouteList from "@/components/RouteList.vue";
 export default {
+  props: ["bikeData", "routeData"],
   components: {
     SearchBar,
+    BikeList,
+    RouteList,
   },
   data() {
     return {};
   },
-  computed: {},
+  computed: {
+    nowComponent() {
+      if (this.bikeData?.length > 0) {
+        return "BikeList";
+      } else {
+        return "RouteList";
+      }
+    },
+  },
   methods: {
     changeCity(val) {
-      this.$emit("changeCity", val)
+      this.$emit("changeCity", val);
+    },
+    changeCenterBike(val) {
+      this.$emit("changeCenterBike", val);
     }
   },
 };

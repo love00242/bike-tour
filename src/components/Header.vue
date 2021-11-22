@@ -36,7 +36,7 @@ export default {
       list: [
         { title: "找單車", icon: "bicycle" },
         { title: "找路線", icon: "route" },
-        { title: "找景點", icon: "umbrella-beach" },
+        // { title: "找景點", icon: "umbrella-beach" },
       ],
     };
   },
