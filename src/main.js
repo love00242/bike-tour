@@ -6,9 +6,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { LMap, LTileLayer, LMarker, LPopup, LIcon } from "vue2-leaflet";
+import Vue2LeafletMarkerCluster from "vue2-leaflet-markercluster";
 
 import "./assets/tailwind.css";
 import "leaflet/dist/leaflet.css";
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
 library.add(fas)
 
@@ -19,6 +22,7 @@ Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
 Vue.component("l-popup", LPopup);
 Vue.component("l-icon", LIcon);
+Vue.component("v-marker-cluster", Vue2LeafletMarkerCluster);
 
 // leaflet設定預設 icon
 import { Icon } from "leaflet";

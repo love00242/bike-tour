@@ -16,7 +16,10 @@ module.exports = {
         DEFAULT: '#9A9A9A',
         dark: '#767676',
       },
+      line: '#C5C5C5',
+      orange: '#C67A24',
       white: colors.white,
+      skin: '#DFE4CE',
     },
     boxShadow: {
       DEFAULT: '4px 4px 20px rgba(118, 118, 118, 0.3)',
@@ -32,7 +35,7 @@ module.exports = {
         sm: '8px',
         md: '16px',
         lg: '24px',
-        xl: '90vh',
+        xl: '85vh',
       },
       borderRadius: {
         large: '40px'
